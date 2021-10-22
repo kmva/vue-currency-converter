@@ -1,22 +1,29 @@
 <template class="currencies">
   <h1 class="currencies__heading">Список валют</h1>
   <form action="">
-      <input type="text" v-model="searchV" class="currencies__search" @input="search" placeholder="Поиск">
+      <input type="text" v-model="searchV" class="currencies__search" placeholder="Поиск">
   </form>
   <ul class="currencies__list">
     <li 
-    v-for="currency in currencies"
-    :key="currency.ID"
-    class="currencies__list-item"
+        v-for="currency in currencies"
+        :key="currency.ID"
+        class="currencies__list-item"
     >
-    <p class="currencies__name">{{currency.Name}}</p>
-    <p class="currencies__conv"><span>1 {{ currency.CharCode }} &harr; {{currency.Value }} RUB</span>  <span class="diff">{{(currency.Previous - currency.Value).toFixed(4)}}</span></p>
+        <p class="currencies__name">{{currency.Name}}</p>
+        <p class="currencies__conv">
+            <span>1 {{ currency.CharCode }} &harr; {{currency.Value }} RUB</span>  
+            <span 
+                class="diff" 
+                :class="(currency.Previous - currency.Value) > 0 ? 'up' : 'down'">
+                    {{ Math.abs((currency.Previous - currency.Value).toFixed(4)) }}
+            </span>
+        </p>
     </li>
   </ul>
 </template>
 
 <script>
-import { computed, onBeforeMount, onMounted, onUpdated, ref, watch } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import {useStore} from 'vuex';
 
 export default {
@@ -42,15 +49,11 @@ export default {
             store.dispatch('getCurrencies')
         })
 
-        function search() {
-            console.log(allCurrencies.value)
-        }
         return{
             allCurrencies,
             filteredCurrencies,
             currencies,
-            searchV,
-            search
+            searchV
         }
     }
 }
@@ -113,12 +116,24 @@ export default {
         padding-left: 17px;
     }
 
+    .currencies__conv .diff.up{
+        color: green;
+    }
+
+    .currencies__conv .diff.down{
+        color: rgb(197, 0, 0);
+    }
+
     .currencies__conv .diff::before{
         content: '↑';
         margin-right: 1em;
         position: absolute;
         left: 0;
         top: -2px;
+    }
+    
+    .currencies__conv .diff.down::before{ 
+        content: '↓';
     }
 
     @media screen and (max-width: 480px) {
