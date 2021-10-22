@@ -1,11 +1,10 @@
 <template class="currencies">
   <h1 class="currencies__heading">Список валют</h1>
   <form action="">
-      <input type="text" :value="searchV" class="currencies__search" @change="search" placeholder="Поиск">
+      <input type="text" v-model="searchV" class="currencies__search" @input="search" placeholder="Поиск">
   </form>
   <ul class="currencies__list">
     <li 
-    :v-if="!currList"
     v-for="currency in currencies"
     :key="currency.ID"
     class="currencies__list-item"
@@ -17,32 +16,40 @@
 </template>
 
 <script>
-import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { computed, onBeforeMount, onMounted, onUpdated, ref, watch } from 'vue';
 import {useStore} from 'vuex';
 
 export default {
 
     setup() {
         const store = useStore();
-        const currencies = computed(() => store.getters.getCurrencies);
-        const currList = ref('')
+        const allCurrencies = computed(() => store.getters.getCurrencies);
 
         const searchV = ref('')
+        const filteredCurrencies = computed(() => {
+            const currArr = Object.values(allCurrencies.value)
+            return currArr.filter(curr => {
+                    return (
+                        curr.Name.toUpperCase().indexOf(searchV.value.toUpperCase()) != -1 
+                        || curr.CharCode.indexOf(searchV.value.toUpperCase()) != -1
+                    )
+                })
+            });
 
-        function search() {
-            currList.value = currencies.value.filter(curr => {
-                return curr.Name.indexOf(searchV.value) != -1 || curr.CharCode.indexOf(searchV.value) != -1
-            })
-        }
+        const currencies = computed(() => searchV.value ? filteredCurrencies.value : allCurrencies.value)
 
         onBeforeMount(() => {
             store.dispatch('getCurrencies')
         })
 
+        function search() {
+            console.log(allCurrencies.value)
+        }
         return{
+            allCurrencies,
+            filteredCurrencies,
             currencies,
             searchV,
-
             search
         }
     }
