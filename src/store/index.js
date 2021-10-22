@@ -5,6 +5,11 @@ export default createStore({
   state: {
     currencies: []
   },
+  getters: {
+    getCurrencies(state) {
+      return state.currencies
+    }
+  },
   mutations: {
     setCurrencies(state, payload) {
       state.currencies = payload.currencies
@@ -12,8 +17,12 @@ export default createStore({
   },
   actions: {
     async getCurrencies({commit}) {
-      const data = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
-      commit('setCurrencies', {currencies: data.data.Valute});
+      try{
+        const data = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
+        commit('setCurrencies', {currencies: data.data.Valute});
+      } catch {
+        throw new Error()
+      }
     }
   },
   modules: {},

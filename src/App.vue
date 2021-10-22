@@ -8,6 +8,8 @@ import {computed} from 'vue'
 import {useRoute} from 'vue-router'
 import Main from './views/Main.vue'
 import Currency from './views/Currency.vue'
+import './assets/css/reset.css'
+import './assets/css/normalize.css'
 
 export default {
   setup() {
@@ -23,24 +25,16 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 
-#nav {
-  padding: 30px;
-}
+  *{
+    box-sizing: border-box;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
