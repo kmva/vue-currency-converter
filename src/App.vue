@@ -14,7 +14,7 @@ import './assets/css/normalize.css'
 export default {
   setup() {
     const route = useRoute();
-    const layout = computed(()=> route.meta.layout)
+    const layout = computed(() => route.meta.layout)
 
     return {
       layout
