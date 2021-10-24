@@ -53,7 +53,7 @@ export default {
     const countOfToCurr = ref(0);
 
     onBeforeMount(() => {
-      store.dispatch('getCurrencies')
+      if(!store.getters.getCurrencies.length) {store.dispatch('getCurrencies')}
     })
 
     function switchCurrs() {

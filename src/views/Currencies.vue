@@ -40,7 +40,7 @@ export default {
         const currencies = computed(() => searchV.value ? filteredCurrencies.value : allCurrencies.value)
 
         onBeforeMount(() => {
-            store.dispatch('getCurrencies')
+            if(!store.getters.getCurrencies.length) {store.dispatch('getCurrencies')}
         })
 
         return{

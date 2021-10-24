@@ -1,9 +1,6 @@
 <template>
   <div class="welcome">
-    <div class="top">
-      <h1>Welcome!</h1>
-      <p>конвертация валют</p>
-    </div>
+    <h1>Welcome!</h1>
     <div class="blue">
       <router-link to="/Currencies">Перейти к списку валют</router-link>
     </div>
@@ -25,15 +22,8 @@ export default {
   }
 
   h1{
-    font-size: 4.3rem
-  }
-
-  p{
-    margin: 1em 0 3em
-  }
-
-  .top{
     height: 20%;
+    font-size: 4.3rem
   }
 
   .blue {

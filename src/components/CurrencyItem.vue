@@ -1,8 +1,10 @@
 <template>
-  <li class="currencies__list-item">
+  <li class="currencies__list-item" @click="switchCurrs">
         <p class="currencies__name">{{currency.Name}}</p>
         <p class="currencies__conv">
-            <span>1 {{ currency.CharCode }} &harr; {{currency.Value }} RUB</span>  
+            <span>  1 {{ isSwitched ? 'RUB' : currency.CharCode }} 
+                &harr; {{isSwitched ? (1 / currency.Value).toFixed(4) : currency.Value}} {{isSwitched ? currency.CharCode : 'RUB'}}
+            </span>  
             <span 
                 class="diff" 
                 :class="(currency.Previous - currency.Value) > 0 ? 'up' : 'down'">
@@ -13,12 +15,24 @@
 </template>
 
 <script>
+import {ref} from 'vue';
+
 export default {
     props: ['currency'],
     setup(props) {
-        const currency = props.currency
+        const currency = props.currency;
+        const isSwitched = ref(false);
 
-        return currency
+        function switchCurrs() {
+            isSwitched.value = !isSwitched.value;
+        } 
+
+        return {
+            currency,
+            isSwitched,
+
+            switchCurrs
+        }
     }
 }
 </script>
