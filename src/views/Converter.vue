@@ -6,7 +6,7 @@
     <div class="converter__card">
       <p class="currency-name">{{currencies[selectedCurr] ? currencies[selectedCurr].Name : ''}}</p>
       <div class="choose-curr">
-        <select v-model="selectedCurr">
+        <select v-model="selectedCurr" @change="convert">
           <option 
             v-for="curr in currencies"
             :key="curr.ID"
@@ -22,7 +22,7 @@
     <div class="converter__card">
       <p class="currency-name">{{currencies[toCurr] ? currencies[toCurr].Name : ''}}</p>
       <div class="second-curr">
-        <select v-model="toCurr">
+        <select v-model="toCurr" @change="convert">
           <option 
             v-for="curr in currencies"
             :key="curr.ID"

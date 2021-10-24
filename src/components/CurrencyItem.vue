@@ -3,7 +3,8 @@
         <p class="currencies__name">{{currency.Name}}</p>
         <p class="currencies__conv">
             <span>  1 {{ isSwitched ? 'RUB' : currency.CharCode }} 
-                &harr; {{isSwitched ? (1 / currency.Value).toFixed(4) : currency.Value}} {{isSwitched ? currency.CharCode : 'RUB'}}
+                &harr; {{isSwitched ? (1 / currency.Value).toFixed(4) : currency.Value}} 
+                        {{isSwitched ? currency.CharCode : 'RUB'}}
             </span>  
             <span 
                 class="diff" 
