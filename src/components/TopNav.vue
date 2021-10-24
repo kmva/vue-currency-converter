@@ -14,7 +14,7 @@ export default {
 <style>
     .nav{
         padding: 2em;
-        background-color: rgb(77,151,248);
+        background-color: #4d97f8
     }
 
     .nav__item{

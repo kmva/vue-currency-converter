@@ -1,24 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "../views/Main";
-import Currency from "../views/Currency"
-import Currencies from "../components/Currencies"
-import Converter from "../components/Converter"
+import WelcomeLayout from "../layouts/WelcomeLayout";
+import CurrencyLayout from "../layouts/CurrencyLayout"
+import Currencies from "../views/Currencies"
+import Converter from "../views/Converter"
 
 const routes = [
   {
     path: "/",
     name: "Main",
-    component: Main,
+    component: WelcomeLayout,
     meta: {
-      layout: Main
+      layout: WelcomeLayout
     }
   },
   {
     path: "/Currency",
     name: "Currency",
-    component: Currency,
+    component: CurrencyLayout,
     meta: {
-      layout: Currency
+      layout: CurrencyLayout
     }
   },
   {
@@ -26,7 +26,7 @@ const routes = [
     name: "Currencies",
     component: Currencies,
     meta: {
-      layout: Currency
+      layout: CurrencyLayout
     }
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     name: "/Converter",
     component: Converter,
     meta: {
-      layout: Currency
+      layout: CurrencyLayout
     }
   },
 

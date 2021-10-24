@@ -1,7 +1,8 @@
-<template class="converter">
-<div>
-  <h1 class="converter__heading">Конвертер</h1>
+<template>
+<div class="converter">
+  <h1 class="converter__heading">Конвертация валют</h1>
   <div class="converter__cards">
+
     <div class="converter__card">
       <p class="currency-name">{{currencies[selectedCurr] ? currencies[selectedCurr].Name : ''}}</p>
       <div class="choose-curr">
@@ -15,11 +16,13 @@
         <input type="text" class="currV" v-model="countOfselectedCurr" @input="convert">
       </div>
     </div>
+
     <button @click="switchCurrs" class="switch-button">&harr;</button>
+
     <div class="converter__card">
       <p class="currency-name">{{currencies[toCurr] ? currencies[toCurr].Name : ''}}</p>
       <div class="second-curr">
-        <select  v-model="toCurr">
+        <select v-model="toCurr">
           <option 
             v-for="curr in currencies"
             :key="curr.ID"
@@ -29,6 +32,7 @@
         <input type="text" class="currV" :value="countOfToCurr" disabled>
       </div>
     </div>
+
   </div>
   </div>
 </template>
@@ -62,7 +66,9 @@ export default {
 
     function convert(){
       countOfToCurr.value = 
-        ((countOfselectedCurr.value * currencies.value[selectedCurr.value].Value) / currencies.value[toCurr.value].Value).toFixed(2)
+        ((countOfselectedCurr.value * currencies.value[selectedCurr.value].Value) 
+        / currencies.value[toCurr.value].Value)
+        .toFixed(2)
     }
 
     return{
@@ -81,10 +87,11 @@ export default {
 
 <style>
   .converter__heading{
+    font-size: 2rem;
     margin: 1.5em auto 1.1em;
   }
 
-  .converter__cards {
+  .converter__cards{
     justify-content: space-between;
     display: flex;
     align-items: flex-end;
@@ -100,23 +107,24 @@ export default {
   }
 
   .converter__card{
+    width: 40%;
     text-align: left;
-    font-size: 1.2rem
+    font-size: 1.2rem 
   }
 
-  .converter__card select {
+  .converter__card select{
     margin-right: 1em;
     border: none;
   }
 
-  .converter__card input {
+  .converter__card input{
     width: 100px;
     border: none;
     border-bottom: 2px solid #333;
   }
 
   .converter__card input:focus{
-    border-bottom-color: rgb(77,151,248);
+    border-bottom-color: #4d97f8;
   }
 
   .converter__card input:disabled{
@@ -127,20 +135,20 @@ export default {
     margin-bottom: 1em;
   }
 
-  .switch-button {
+  .switch-button{
     background: #FFF;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgb(77,151,248);
-    color: rgb(77,151,248);
+    border: 1px solid #4d97f8;
+    color: #4d97f8;
     cursor: pointer;
     transition: .2s
   }
 
   .switch-button:hover{
     color: #FFF;
-    background-color: rgb(77,151,248);
+    background-color: #4d97f8;
   }
 
   @media screen and (max-width: 600px){
@@ -148,6 +156,10 @@ export default {
       width: 100%;
       flex-wrap: wrap;
       row-gap: 3em
+    }
+
+    .converter__card{
+      width: 100%;
     }
   }
 

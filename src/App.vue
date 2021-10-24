@@ -1,15 +1,15 @@
 <template>
-  <component :is="layout"></component>
+  <component :is="layout" v-if="layout"></component>
 </template>
 
 
 <script>
 import {computed} from 'vue'
 import {useRoute} from 'vue-router'
-import Main from './views/Main.vue'
-import Currency from './views/Currency.vue'
-import './assets/css/reset.css'
+import Main from './layouts/WelcomeLayout.vue'
+import Currency from './layouts/CurrencyLayout.vue'
 import './assets/css/normalize.css'
+import './assets/css/reset.css'
 
 export default {
   setup() {
