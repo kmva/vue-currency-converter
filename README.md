@@ -1,4 +1,5 @@
 # vue-currency-converter
+Demo: https://vue-currency-converter-eb18c.firebaseapp.com/
 
 ## Project setup
 ```
