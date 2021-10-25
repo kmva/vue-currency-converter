@@ -102,8 +102,15 @@ export default {
             row-gap: .7em;
         }
 
+        @supports not (row-gap: .7em) {
+            .currencies__conv .diff {
+                margin-top: .7em;
+            }
+        }
+
         .currencies__list-item {
             width: 95%;
+            padding: 1.5em;
         }
     }
 </style>

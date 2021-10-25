@@ -77,6 +77,10 @@ export default {
     }
 
     @media screen and (max-width: 480px){
+        .currencies__heading{
+            margin: 1em 0 0.7em;
+        }
+
         .currencies__search{
             width: 95%;
         }

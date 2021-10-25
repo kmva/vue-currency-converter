@@ -152,10 +152,20 @@ export default {
   }
 
   @media screen and (max-width: 600px){
+    .converter__heading{
+       margin: 1em 0 0.7em;
+    }
+
     .converter__cards{
       width: 100%;
       flex-wrap: wrap;
       row-gap: 3em
+    }
+
+    @supports not (row-gap: .7em) {
+      .switch-button {
+        margin: 1.5em 0;
+      }
     }
 
     .converter__card{
